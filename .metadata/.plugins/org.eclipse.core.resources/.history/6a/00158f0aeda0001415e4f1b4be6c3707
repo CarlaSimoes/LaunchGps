@@ -1,0 +1,102 @@
+package com.meatio.androidmetaio;
+
+import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.media.MediaPlayer;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.util.FloatMath;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.IOException;
+
+public class MoveMvl extends Activity implements SensorEventListener {
+	private SensorManager sensorManager;
+    private MediaPlayer mp;
+    private TextView text;
+    boolean reset;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        text = (TextView)findViewById(R.id.textView);
+
+
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        mp = new MediaPlayer();
+
+        reset = false;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            float xVal = event.values[0];
+            float yVal = event.values[1];
+            float zVal = event.values[2];
+            text.setText("Aceleracion en el eje x: " + String.valueOf(xVal) + "\nAceleracion en el eje y: " + String.valueOf(yVal) + "\nAceleracion en el eje z: " + String.valueOf(zVal));
+            if(xVal > -1.0 && xVal < 1.0){
+                if(yVal > -1.0 && yVal < 1.0){
+                    if(zVal < -9.6 && zVal > -10.0){
+                        if(reset){
+                            reset = false;
+                            //pitamos
+                            mp.reset();
+                            try {
+                                AssetFileDescriptor afd;
+                                afd = getAssets().openFd("zelda.mp3");
+                                mp.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                                mp.prepare();
+                                mp.start();
+
+                            } catch (IllegalStateException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+            if(xVal > -1.0 && xVal < 1.0) {
+                if (yVal > -1.0 && yVal < 1.0) {
+                    if (zVal > 9.6 && zVal < 10.0) {
+                        reset = true;
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // register this class as a listener for the orientation and
+        // accelerometer sensors
+        sensorManager.registerListener(this,sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        // unregister listener
+        super.onPause();
+        sensorManager.unregisterListener(this);
+    }
+}

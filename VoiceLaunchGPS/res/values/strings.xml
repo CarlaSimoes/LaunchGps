@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">Launch_gps</string>
+    <string name="action_settings">Settings</string>
+    <string name="metaioSDKSignature">fATHtuYuVAi1IpawQ6m57N8MvdcDtYjBbhnKqC7PkKg=</string>
+    <string name="radiobutton_web">Web search</string>
+    <string name="radiobutton_free">Free form</string>
+    <string name="speechbtn">Press the button to speak</string>
+    <string name="speak_button">GPS Voz</string>
+    <string name="voice_button">GetValue</string>
+    <string name="latitud_text">LATITUDE</string>
+    <string name="longitud_text">LONGITUDE</string>
+    <string name="GPS_button">START GPS</string>
+    <string name="sensor_button">Mov Sonido</string>
+
+</resources>

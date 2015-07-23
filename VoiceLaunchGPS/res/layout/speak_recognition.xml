@@ -1,0 +1,83 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="com.meatio.androidmetaio.MainActivity"
+    android:background="@drawable/background_gps">
+
+    <TextView
+        android:id="@+id/data_longitud"
+        android:layout_width="20dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/data_latitud"
+        android:layout_below="@+id/longitud_text"
+        android:layout_marginTop="12dp"
+        android:textColor="#000"
+        android:textSize="25sp" />
+
+    <TextView
+        android:id="@+id/data_latitud"
+        android:layout_width="20dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/latitud_text"
+        android:layout_below="@+id/latitud_text"
+        android:layout_marginTop="14dp"
+        android:textColor="#000"
+        android:textSize="25sp" />
+    
+    <TextView
+        android:id="@+id/latitud_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="61dp"
+        android:text="@string/latitud_text"
+        android:textColor="#000"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/longitud_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/data_latitud"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="@string/longitud_text"
+        android:textColor="#000"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/button_latitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/data_latitud"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/data_latitud"
+        android:layout_toRightOf="@+id/data_latitud"
+        android:text="@string/voice_button" />
+
+    <Button
+        android:id="@+id/button_longitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/data_longitud"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/data_longitud"
+        android:layout_toRightOf="@+id/data_longitud"
+        android:text="@string/voice_button" />
+
+    <Button
+        android:id="@+id/button_startGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/GPS_button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/button_longitud"
+        android:layout_alignEnd="@+id/button_longitud" />
+
+</RelativeLayout>
